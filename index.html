@@ -11,9 +11,21 @@
 <body>
   <div class="game-container">
     <h1>貪吃蛇遊戲</h1>
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
-    <div class="score">分數: <span id="score">0</span></div>
-    <button id="startButton">開始遊戲</button>
+    <div class="canvas-container">
+      <canvas id="gameCanvas" width="400" height="400"></canvas>
+      <button id="startButton">開始遊戲</button>
+    </div>
+    <div class="score">
+      <div>分數: <span id="score">0</span></div>
+      <div class="controls">
+        <button id="upButton" class="control-btn">↑</button>
+        <div class="horizontal-controls">
+          <button id="leftButton" class="control-btn">←</button>
+          <button id="rightButton" class="control-btn">→</button>
+        </div>
+        <button id="downButton" class="control-btn">↓</button>
+      </div>
+    </div>
   </div>
   <script src="game.js"></script>
 </body>

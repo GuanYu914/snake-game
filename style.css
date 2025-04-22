@@ -26,28 +26,84 @@ h1 {
     margin-bottom: 20px;
 }
 
+.canvas-container {
+    position: relative;
+    display: inline-block;
+}
+
 #gameCanvas {
     border: 2px solid #333;
     background-color: #fff;
+}
+
+#startButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    font-size: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#startButton:hover {
+    background-color: #45a049;
+    transform: translate(-50%, -50%) scale(1.05);
 }
 
 .score {
     font-size: 24px;
     margin: 20px 0;
     color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
 }
 
-#startButton {
-    padding: 10px 20px;
-    font-size: 18px;
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.horizontal-controls {
+    display: flex;
+    gap: 20px;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-#startButton:hover {
+.control-btn:active {
     background-color: #45a049;
+    transform: scale(0.95);
+}
+
+@media (min-width: 768px) {
+    .controls {
+        display: none;
+    }
 } 

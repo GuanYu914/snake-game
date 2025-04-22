@@ -15,12 +15,37 @@ class SnakeGame {
         this.startButton = document.getElementById('startButton');
         this.scoreElement = document.getElementById('score');
         
+        // 獲取方向鍵按鈕元素
+        this.upButton = document.getElementById('upButton');
+        this.downButton = document.getElementById('downButton');
+        this.leftButton = document.getElementById('leftButton');
+        this.rightButton = document.getElementById('rightButton');
+        
         this.bindEvents();
     }
 
     bindEvents() {
         document.addEventListener('keydown', this.handleKeyPress.bind(this));
         this.startButton.addEventListener('click', () => this.startGame());
+        
+        // 添加觸控按鈕事件
+        this.upButton.addEventListener('click', () => this.handleDirectionChange('up'));
+        this.downButton.addEventListener('click', () => this.handleDirectionChange('down'));
+        this.leftButton.addEventListener('click', () => this.handleDirectionChange('left'));
+        this.rightButton.addEventListener('click', () => this.handleDirectionChange('right'));
+    }
+
+    handleDirectionChange(newDirection) {
+        const opposites = {
+            'up': 'down',
+            'down': 'up',
+            'left': 'right',
+            'right': 'left'
+        };
+
+        if (opposites[newDirection] !== this.direction) {
+            this.direction = newDirection;
+        }
     }
 
     handleKeyPress(event) {
@@ -34,16 +59,7 @@ class SnakeGame {
         const newDirection = keyMap[event.key];
         if (!newDirection) return;
 
-        const opposites = {
-            'up': 'down',
-            'down': 'up',
-            'left': 'right',
-            'right': 'left'
-        };
-
-        if (opposites[newDirection] !== this.direction) {
-            this.direction = newDirection;
-        }
+        this.handleDirectionChange(newDirection);
     }
 
     generateWalls() {
@@ -193,6 +209,7 @@ class SnakeGame {
         this.isGameOver = true;
         clearInterval(this.gameLoop);
         this.startButton.textContent = '重新開始';
+        this.startButton.style.display = 'block';
     }
 
     startGame() {
@@ -208,7 +225,8 @@ class SnakeGame {
         this.generateWalls();
         this.food = this.generateFood();
         
-        this.startButton.textContent = '遊戲中';
+        // 隱藏開始按鈕
+        this.startButton.style.display = 'none';
 
         // 清除之前的遊戲循環
         if (this.gameLoop) {
